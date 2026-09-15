@@ -10,7 +10,7 @@
     ./modules
   ];
 
-  system.nixos.label = "cleanup";
+  system.nixos.label = "kvm";
 
   nixpkgs.config.allowUnfree = true;
 
