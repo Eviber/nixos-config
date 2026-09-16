@@ -10,7 +10,7 @@
     ./modules
   ];
 
-  system.nixos.label = "kvm";
+  system.nixos.label = "homeserver-vm";
 
   nixpkgs.config.allowUnfree = true;
 

@@ -7,6 +7,7 @@
     ./firefox.nix
     ./fonts.nix
     ./gpg.nix
+    ./home_vm.nix
     ./locale.nix
     ./openssh.nix
     ./shells.nix
