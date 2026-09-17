@@ -10,7 +10,7 @@
     ./modules
   ];
 
-  system.nixos.label = "homeserver-vm";
+  system.nixos.label = "TAP-bridge";
 
   nixpkgs.config.allowUnfree = true;
 

@@ -10,6 +10,8 @@
   networking.networkmanager.enable = false;
   networking.wireless.iwd.enable = true;
 
+  networking.useNetworkd = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

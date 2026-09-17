@@ -8,6 +8,43 @@
   };
   users.groups.homeserver-vm = {};
 
+  systemd.network.netdevs = {
+    "20-br0" = {
+      netdevConfig = {
+        Kind = "bridge";
+        Name = "br0";
+        MACAddress = "d4:5d:64:7f:e4:c5";
+      };
+    };
+    "25-tap0" = {
+      netdevConfig = {
+        Kind = "tap";
+        Name = "tap0";
+      };
+      tapConfig = {
+        User = "homeserver-vm";
+      };
+    };
+  };
+
+  systemd.network.networks = {
+    "30-enp3s0" = {
+      matchConfig.Name = "enp3s0";
+      networkConfig.Bridge = "br0";
+      linkConfig.RequiredForOnline = "enslaved";
+    };
+    "30-tap0" = {
+      matchConfig.Name = "tap0";
+      networkConfig.Bridge = "br0";
+      linkConfig.RequiredForOnline = "enslaved";
+    };
+    "40-br0" = {
+      matchConfig.Name = "br0";
+      networkConfig.DHCP = "ipv4";
+      linkConfig.RequiredForOnline = "routable";
+    };
+  };
+
   systemd.services.homeserver-vm = {
     description = "Home server VM";
     wantedBy = [ "multi-user.target" ];
@@ -39,11 +76,12 @@
       DevicePolicy = "closed";
       DeviceAllow = [
         "/dev/kvm rw"
-        # "/dev/net/tun rw" # needed for tap networking
+        "/dev/net/tun rw"
       ];
 
-      RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" ];
-      # SocketBindDeny = "any"; # only if tap networking
+      RestrictAddressFamilies = "none";
+      SocketBindDeny = "any";
+      IPAddressDeny = "any";
 
       NoNewPrivileges = true;
       CapabilityBoundingSet = "";
