@@ -12,6 +12,29 @@
     "192.168.1.222" = [ "homeserver" ];
   };
 
+  security.sudo = {
+    enable = true;
+    extraRules = [{
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/systemctl restart homeserver-vm";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+      groups = [ "wheel" ];
+    }
+    {
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/cp -rT result /var/lib/homeserver-vm/current";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+      runAs = "homeserver-vm";
+      users = [ "youva" ];
+    }];
+  };
+
   systemd.network.netdevs = {
     "20-br0" = {
       netdevConfig = {
