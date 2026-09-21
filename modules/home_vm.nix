@@ -8,6 +8,10 @@
   };
   users.groups.homeserver-vm = {};
 
+  networking.hosts = {
+    "192.168.1.222" = [ "homeserver" ];
+  };
+
   systemd.network.netdevs = {
     "20-br0" = {
       netdevConfig = {

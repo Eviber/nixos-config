@@ -10,7 +10,7 @@
     ./modules
   ];
 
-  system.nixos.label = "TAP-bridge";
+  system.nixos.label = "just";
 
   nixpkgs.config.allowUnfree = true;
 
@@ -64,6 +64,7 @@
     nodejs
     lua-language-server
     bob-nvim
+    just
 
     # Hyprland / Wayland desktop
     hyprland
