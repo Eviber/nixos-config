@@ -10,7 +10,7 @@
     ./modules
   ];
 
-  system.nixos.label = "just";
+  system.nixos.label = "minus-warehouse";
 
   nixpkgs.config.allowUnfree = true;
 
