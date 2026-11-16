@@ -10,7 +10,7 @@
     ./modules
   ];
 
-  system.nixos.label = "limine";
+  system.nixos.label = "sbctl";
 
   nixpkgs.config.allowUnfree = true;
 
@@ -31,6 +31,7 @@
     nixfmt-rs # nix formatter
     statix # nix static analyzer
     nixd # nix language server
+    sbctl # secure boot key manager
 
     # CLI fundamentals
     wget
